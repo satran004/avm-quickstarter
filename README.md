@@ -1,4 +1,4 @@
-A maven based quickstarter project for java based smart contract for AVM.
+A maven based quickstarter project for jav smart contract for AVM.
 
 **Pre-requisites**
 
