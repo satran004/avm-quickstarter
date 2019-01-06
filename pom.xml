@@ -23,10 +23,17 @@
   <dependencies>
     <dependency>
       <groupId>org.aion</groupId>
-      <artifactId>avm</artifactId>
-      <version>0.0.1</version>
+      <artifactId>avm-api</artifactId>
+      <version>0.0.0</version>
       <scope>system</scope>
-      <systemPath>${avm.lib.dir}/avm.jar</systemPath>
+      <systemPath>${avm.lib.dir}/org-aion-avm-api.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>org.aion</groupId>
+      <artifactId>avm-userlib</artifactId>
+      <version>0.0.0</version>
+      <scope>system</scope>
+      <systemPath>${avm.lib.dir}/org-aion-avm-userlib.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
