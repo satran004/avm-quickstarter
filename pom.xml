@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.satran.samples</groupId>
+  <groupId>org.aion4j.samples</groupId>
   <artifactId>avm-quickstarter</artifactId>
   <version>1.0-SNAPSHOT</version>
 
@@ -12,16 +12,21 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
-    <avm.version>0.1-SNAPSHOT</avm.version>
+    <java.version>10</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+
+    <aion4j.plugin.version>0.0.1-SNAPSHOT</aion4j.plugin.version>
+    <avm.lib.dir>${project.basedir}/lib</avm.lib.dir>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.aion</groupId>
       <artifactId>avm</artifactId>
-      <version>${avm.version}</version>
+      <version>0.0.1</version>
+      <scope>system</scope>
+      <systemPath>${avm.lib.dir}/avm.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -32,66 +37,36 @@
   </dependencies>
 
   <build>
+
     <plugins>
-      <plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <version>1.8</version>
-        <executions>
-          <execution>
-            <phase>prepare-package</phase>
-            <configuration>
-              <tasks>
-                <unzip src="${basedir}/lib/org-aion-avm-userlib.jar" dest="${basedir}/target/classes" />
-              </tasks>
-            </configuration>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
           <archive>
             <manifest>
-              <mainClass>org.satran.samples.HelloWorld</mainClass>
+              <mainClass>org.aion4j.sample.HelloWorld</mainClass>
             </manifest>
           </archive>
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-install-plugin</artifactId>
-        <version>2.5.2</version>
-        <executions>
-          <execution>
-            <phase>initialize</phase>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <configuration>
-              <groupId>org.aion</groupId>
-              <artifactId>avm</artifactId>
-              <version>${avm.version}</version>
-              <packaging>jar</packaging>
-              <file>${basedir}/lib/avm.jar</file>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.aion4j</groupId>
         <artifactId>aion4j-maven-plugin</artifactId>
-        <version>0.1-SNAPSHOT</version>
-        <dependencies>
-          <dependency>
-            <groupId>org.aion</groupId>
-            <artifactId>avm</artifactId>
-            <version>${avm.version}</version>
-          </dependency>
-        </dependencies>
+        <version>${aion4j.plugin.version}</version>
+        <configuration>
+          <avmLibDir>${avm.lib.dir}</avmLibDir>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>clean</goal>
+              <goal>init</goal>
+              <goal>deploy</goal>
+              <goal>prepack</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
