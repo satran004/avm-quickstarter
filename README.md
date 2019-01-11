@@ -6,7 +6,12 @@ A maven based quickstarter project for java smart contract on AVM.
 
 2) aion4j-maven-plugin : 
 
-You need to first build this maven plugin in your local environment. For build instructions, check the 
+Set the "aion4j.plugin.version" in pom.xml to latest release version in maven central.
+Current preview version - 0.0.1
+
+OR,
+
+If you want to depend on a snapshot version of the plugin, you need to first build this maven plugin in your local environment. For build instructions, check the 
 plugin's project page : https://github.com/satran004/aion4j-maven-plugin
 
 **Build**
