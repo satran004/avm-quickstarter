@@ -58,6 +58,18 @@
         </configuration>
       </plugin>
       <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M3</version>
+          <dependencies>
+              <dependency>
+                  <groupId>org.apache.maven.surefire</groupId>
+                  <artifactId>surefire-junit47</artifactId>
+                  <version>3.0.0-M3</version>
+              </dependency>
+          </dependencies>
+      </plugin>
+      <plugin>
         <groupId>org.aion4j</groupId>
         <artifactId>aion4j-maven-plugin</artifactId>
         <version>${aion4j.plugin.version}</version>
